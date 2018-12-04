@@ -2,10 +2,20 @@ package com.cursojava.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Categoria implements Serializable {
+	
+	// Classe de domínio são responsáveis por identificar o objeto - são retratos de nossa entidade no banco de dados.
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 
@@ -61,7 +71,7 @@ public class Categoria implements Serializable {
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!nome.equals (other.nome))
 			return false;
 		return true;
 	}
