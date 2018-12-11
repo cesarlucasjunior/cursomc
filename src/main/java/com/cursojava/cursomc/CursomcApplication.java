@@ -41,6 +41,7 @@ public class CursomcApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(c1,c2));
 		p3.getCategorias().addAll(Arrays.asList(c1));
 		
+		//Método saveAll() para instanciar os objetos no banco de dados.
 		categoriaRepository.saveAll(Arrays.asList(c1,c2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
