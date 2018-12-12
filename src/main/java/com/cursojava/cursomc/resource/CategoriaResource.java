@@ -25,6 +25,7 @@ public class CategoriaResource {
 		
 		Categoria obj = service.find(id);
 		
+		//Já retorna o objeto em formato JSON
 		return ResponseEntity.ok().body(obj);
 		
 	}

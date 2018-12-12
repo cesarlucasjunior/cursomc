@@ -19,6 +19,8 @@ public class ResourceExceptionHandler {
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandartError> objectNotFoundException(ObjectNotFoundException erro, HttpServletRequest req){
 		
+		//ResponseEntity assim como na resource visto que precisamos devolver em JSON e nas especificações Http.
+		
 		StandartError error = new StandartError(HttpStatus.NOT_FOUND.value(), erro.getMessage(), System.currentTimeMillis());
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);

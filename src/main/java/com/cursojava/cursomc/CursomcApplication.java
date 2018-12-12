@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cursojava.cursomc.domain.Categoria;
+import com.cursojava.cursomc.domain.Cidade;
+import com.cursojava.cursomc.domain.Estado;
 import com.cursojava.cursomc.domain.Produto;
 import com.cursojava.cursomc.repositories.CategoriaRepository;
+import com.cursojava.cursomc.repositories.CidadeRepository;
+import com.cursojava.cursomc.repositories.EstadoRepository;
 import com.cursojava.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,10 +24,13 @@ public class CursomcApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;
-	
+	private CategoriaRepository categoriaRepository;	
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;	
+	@Autowired
+	private EstadoRepository estadoRepository;	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	public void run(String... args) throws Exception {
 	
@@ -45,5 +52,26 @@ public class CursomcApplication implements CommandLineRunner {
 		categoriaRepository.saveAll(Arrays.asList(c1,c2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
+		// Intanciar Estado e Cidade assim como vincula-los uns aos outros.
+		
+		Estado est1 = new Estado(null,"Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		//Perceba que o Estado já está vinculado à Cidade instanciada.
+		Cidade cd1 = new Cidade(null, "Uberlândia", est1);
+		Cidade cd2 = new Cidade(null, "São Paulo", est2);
+		Cidade cd3 = new Cidade(null, "Campinas", est2);
+		
+		//Falta agora vincular as cidades aos Estados:
+		
+		est1.setCidades(Arrays.asList(cd1));
+		est2.getCidades().addAll(Arrays.asList(cd2,cd3));
+		
+		//Realizando a persistencia dos objetos criados:
+		
+		//Estado obrigatoriamente deve ser o primeiro já que a cidade precisa, obrigatoriamente, ter um Estado
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		
+		cidadeRepository.saveAll(Arrays.asList(cd1,cd2,cd3));
 	}
 }
