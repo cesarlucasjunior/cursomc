@@ -13,6 +13,7 @@ import com.cursojava.cursomc.domain.Cidade;
 import com.cursojava.cursomc.domain.Cliente;
 import com.cursojava.cursomc.domain.Endereco;
 import com.cursojava.cursomc.domain.Estado;
+import com.cursojava.cursomc.domain.ItemPedido;
 import com.cursojava.cursomc.domain.Pagamento;
 import com.cursojava.cursomc.domain.PagamentoComBoleto;
 import com.cursojava.cursomc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.cursojava.cursomc.repositories.CidadeRepository;
 import com.cursojava.cursomc.repositories.ClienteRepository;
 import com.cursojava.cursomc.repositories.EnderecoRepository;
 import com.cursojava.cursomc.repositories.EstadoRepository;
+import com.cursojava.cursomc.repositories.ItemPedidoRepository;
 import com.cursojava.cursomc.repositories.PagamentoRepository;
 import com.cursojava.cursomc.repositories.PedidoRepository;
 import com.cursojava.cursomc.repositories.ProdutoRepository;
@@ -52,6 +54,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public void run(String... args) throws Exception {
 
@@ -134,6 +138,26 @@ public class CursomcApplication implements CommandLineRunner {
 
 		pagamentoRepository.save(pagto1);
 		pagamentoRepository.save(pagto2);
-
+		
+		//Instanciação da classe ItemPedido:
+		
+		ItemPedido ip1 = new ItemPedido(ped1,p1,0.0,1,2000.00);
+		ItemPedido ip2 = new ItemPedido(ped2,p2,0.0,2,800.00);
+		ItemPedido ip3 = new ItemPedido(ped1,p3,100.00,1,8000.00);
+		
+		//Associando as instancias de ItemPedido com o Pedido
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip3));
+		ped2.getItens().addAll(Arrays.asList(ip2));
+		
+		//Associando as instancias de ItemPedido com o Produto
+		
+		p1.getLista().addAll(Arrays.asList(ip1));
+		p2.getLista().addAll(Arrays.asList(ip2));
+		p3.getLista().addAll(Arrays.asList(ip3));
+		
+		//Salvando a instancia no banco de dados:
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 }
