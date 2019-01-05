@@ -34,4 +34,10 @@ public class CategoriaService {
 		obj.setId(null); //Para a inserção dar certo - se tiver id a JPA atualizará o registro.
 		return repo.save(obj);
 	}
+	
+	//Atualização de categorias já persistidas
+	public Categoria update(Categoria obj) {
+		find(obj.getId()); //Verificação se existe o id, do contrário, lança uma exceção
+		return repo.save(obj);
+	}
 }

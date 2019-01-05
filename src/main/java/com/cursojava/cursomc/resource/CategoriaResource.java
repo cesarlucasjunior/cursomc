@@ -45,5 +45,14 @@ public class CategoriaResource {
 		
 		return ResponseEntity.created(uri).build();
 	}
+	
+	//Atualização de um registro já persistido
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT) //O que virá na requisição
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);
+		
+		return ResponseEntity.noContent().build();
+	}
 
 }
