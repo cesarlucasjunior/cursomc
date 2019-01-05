@@ -21,7 +21,6 @@ public class CategoriaService {
 	
 	
 	// Aqui teremos o método que acessará os dados enviando o resultado ao REST:
-	
 	public Categoria find(Integer id) {
 		
 		Optional<Categoria> obj = repo.findById(id);
@@ -30,4 +29,9 @@ public class CategoriaService {
 				", Tipo: " + Categoria.class.getName()));
 	}
 	
+	//Método responsável por pegar uma Categoria e persisti-la no banco de dados.
+	public Categoria insert(Categoria obj) {
+		obj.setId(null); //Para a inserção dar certo - se tiver id a JPA atualizará o registro.
+		return repo.save(obj);
+	}
 }
