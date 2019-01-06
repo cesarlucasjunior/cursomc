@@ -1,5 +1,6 @@
 package com.cursojava.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,10 @@ public class CategoriaService {
 			throw new DataIntegrityException(
 					"Não é possível excluir essa categoria porque ela possui um produto associado!");
 		}
+	}
+	
+	//Buscar todos as categorias:
+	public List<Categoria> findAll(){
+		return repo.findAll();
 	}
 }
