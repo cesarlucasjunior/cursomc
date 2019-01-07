@@ -69,5 +69,4 @@ public class CategoriaResource {
 		List<Categoria> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-
 }
