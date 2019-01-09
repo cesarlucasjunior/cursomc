@@ -61,6 +61,11 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Categoria c1 = new Categoria(null, "Informática");
 		Categoria c2 = new Categoria(null, "Escritório");
+		Categoria c3 = new Categoria(null, "Cama mesa e banho");
+		Categoria c4 = new Categoria(null, "Papelaria");
+		Categoria c5 = new Categoria(null, "Administrativo");
+		Categoria c6 = new Categoria(null, "Comercial");
+		Categoria c7 = new Categoria(null, "Finanças");
 
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -74,7 +79,7 @@ public class CursomcApplication implements CommandLineRunner {
 		p3.getCategorias().addAll(Arrays.asList(c1));
 
 		// Método saveAll() para instanciar os objetos no banco de dados.
-		categoriaRepository.saveAll(Arrays.asList(c1, c2));
+		categoriaRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
 		// Intanciar Estado e Cidade assim como vincula-los uns aos outros.
