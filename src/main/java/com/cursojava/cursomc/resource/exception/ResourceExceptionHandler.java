@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -41,4 +42,16 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<StandartError> erroValidacao(MethodArgumentNotValidException erro, HttpServletRequest req) {
+
+		// ResponseEntity assim como na resource visto que precisamos devolver em JSON e
+		// nas especificações Http.
+
+		StandartError error = new StandartError(HttpStatus.BAD_REQUEST.value(), "Erro durante a validação!",
+				System.currentTimeMillis());
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
 }
