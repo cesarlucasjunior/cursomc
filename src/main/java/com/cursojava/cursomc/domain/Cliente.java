@@ -48,7 +48,7 @@ public class Cliente {
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipoCliente = tipoCliente.getId();
+		this.tipoCliente = (tipoCliente == null) ? null : tipoCliente.getId();
 	}
 
 	public void setId(Integer id) {

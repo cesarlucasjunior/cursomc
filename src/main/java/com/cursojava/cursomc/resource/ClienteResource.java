@@ -50,9 +50,11 @@ public class ClienteResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO clienteDTO, @PathVariable Integer id) {
 
-		Cliente cliente = service.fromDTO(clienteDTO);
-		cliente.setId(id);
-		service.update(cliente);
+		//Cliente cliente = service.fromDTO(clienteDTO);
+		//cliente.setId(id);
+		
+		clienteDTO.setId(id);
+		service.update(clienteDTO);
 
 		return ResponseEntity.noContent().build();
 	}

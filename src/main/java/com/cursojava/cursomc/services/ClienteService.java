@@ -35,9 +35,13 @@ public class ClienteService {
 		return clienteRepository.save(cliente);
 	}
 
-	public Cliente update(Cliente cliente) {
-		find(cliente.getId());
-		return clienteRepository.save(cliente);
+	public Cliente update(ClienteDTO clienteDTO) {
+		// Só quero atualizar os atributos do DTO:
+		Cliente novoCliente = find(clienteDTO.getId());
+		novoCliente.setNome(clienteDTO.getNome());
+		novoCliente.setEmail(clienteDTO.getEmail());
+		
+		return clienteRepository.save(novoCliente);
 	}
 
 	public void delete(Integer id) {
