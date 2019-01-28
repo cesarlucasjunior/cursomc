@@ -1,20 +1,42 @@
 package com.cursojava.cursomc.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.cursojava.cursomc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteInsertDTO {
 
+	@NotEmpty(message="Preenchimento obrigatório!")
+	@Length(min=5, max=80, message="O tamanho do campo é de 5 a 80 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório!")
+	@Email(message="E-mail inválido!")
 	private String email;
+	
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String cpfOuCnpj;
+	
 	private Integer tipoCliente;
 
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String logradouro;
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String numero;
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String complemento;
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String bairro;
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String cep;
 
 	private Integer cidadeId;
 
+	@NotEmpty(message="Preenchimento obrigatório!")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
