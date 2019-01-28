@@ -86,24 +86,28 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
+		Estado est3 = new Estado(null, "Distrito Federal");
 
 		// Perceba que o Estado já está vinculado à Cidade instanciada.
 		Cidade cd1 = new Cidade(null, "Uberlândia", est1);
 		Cidade cd2 = new Cidade(null, "São Paulo", est2);
 		Cidade cd3 = new Cidade(null, "Campinas", est2);
+		Cidade cd4 = new Cidade(null, "Brasília", est3);
+		
 
 		// Falta agora vincular as cidades aos Estados:
 
 		est1.setCidades(Arrays.asList(cd1));
 		est2.getCidades().addAll(Arrays.asList(cd2, cd3));
-
+		est3.getCidades().addAll(Arrays.asList(cd4));
+		
 		// Realizando a persistencia dos objetos criados:
 
 		// Estado obrigatoriamente deve ser o primeiro já que a cidade precisa,
 		// obrigatoriamente, ter um Estado
-		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		estadoRepository.saveAll(Arrays.asList(est1, est2,est3));
 
-		cidadeRepository.saveAll(Arrays.asList(cd1, cd2, cd3));
+		cidadeRepository.saveAll(Arrays.asList(cd1, cd2, cd3, cd4));
 
 		// Instanciando Cliente e Endereço:
 
