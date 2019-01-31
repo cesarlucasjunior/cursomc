@@ -15,7 +15,9 @@ import com.cursojava.cursomc.domain.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
-	@Query("Select DISTINCT obj from Produto obj INNER JOIN obj.categorias cat WHERE obj.name like %:nome% and cat IN :categorias")
+	@Query("Select DISTINCT obj from Produto obj INNER JOIN obj.categorias cat WHERE obj.nome like %:nome% and cat IN :categorias")
 	Page<Produto> search(@Param("nome")String nome, @Param("categorias")List<Categoria> categorias, Pageable pageRequest);
+	
+	// Esse pageRequest faria diferença?
 
 }
