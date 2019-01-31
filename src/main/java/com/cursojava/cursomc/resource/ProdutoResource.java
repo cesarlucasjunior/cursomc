@@ -1,5 +1,7 @@
 package com.cursojava.cursomc.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -32,18 +34,21 @@ public class ProdutoResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<ProdutoDTO>> findPage(
 			@RequestParam(value="nome", defaultValue="") String nome, //Se esse nome vier com espaço temos que decodifica-lo
-			@RequestParam(value="page", defaultValue="0") String categorias,
+			@RequestParam(value="categorias", defaultValue="0") String categorias,
 			@RequestParam(value="page", defaultValue="0") Integer page,
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage,
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy,
 			@RequestParam(value="direction", defaultValue="ASC") String direction){
-	
 		
-		Page<Produto> list = service.search(Decoder.decodeParamString(nome), Decoder.decodeStringInListInt(categorias), page, 
-				linesPerPage, orderBy, direction);
+		String nomeDecoded = Decoder.decodeParamString(nome);
+		List<Integer> ids = Decoder.decodeStringInListInt(categorias);
+	
+		Page<Produto> list = service.search(nomeDecoded, ids , page, linesPerPage, orderBy, direction);
+		//A list está vindo vazia!
 		Page<ProdutoDTO> listDTO = list.map(obj -> new ProdutoDTO(obj));	
-			
+		System.out.println(listDTO.getNumberOfElements());	
 		return ResponseEntity.ok().body(listDTO);
+		
 	}
 
 }
