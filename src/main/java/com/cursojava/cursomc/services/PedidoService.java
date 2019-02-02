@@ -65,9 +65,13 @@ public class PedidoService {
 		pedido = repo.save(pedido);
 		pagamentoRepository.save(pedido.getPagamento());
 		
+		
 		for(ItemPedido ip : pedido.getItens()) {
-			ip.setDesconto(0.00);
-			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreço());
+			
+			System.out.println("--------" + ip.getProduto().getId());
+			
+			ip.setDesconto(0.0);
+			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
 			ip.setPedido(pedido);
 		}
 		

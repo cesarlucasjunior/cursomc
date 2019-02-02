@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Estado implements Serializable {
@@ -23,7 +23,7 @@ public class Estado implements Serializable {
 
 	@OneToMany(mappedBy = "estado") // O mappedBy declara qual atributo da entidade associada é responsável por
 									// conectar a esse atributo deste mapeamento reverso.
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Cidade> cidades = new ArrayList<>();
 
 	public Estado() {

@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -27,9 +26,9 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Double preço;
+	private Double preco;
 
-	@JsonBackReference
+	@JsonIgnore
 	// Um produto tem uma lista de Categorias
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", 
@@ -47,12 +46,12 @@ public class Produto implements Serializable {
 	}
 
 	// Esse construtor não deve ter as listas.
-	public Produto(Integer id, String nome, Double preço) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.preço = preço;
-	}
+		public Produto(Integer id, String nome, Double preco) {
+			super();
+			this.id = id;
+			this.nome = nome;
+			this.preco = preco;
+		}
 	
 	@JsonIgnore
 	public List<Pedido> getPedidos(){
@@ -80,12 +79,12 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public Double getPreço() {
-		return preço;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setPreço(Double preço) {
-		this.preço = preço;
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 
 	public List<Categoria> getCategorias() {
@@ -96,11 +95,11 @@ public class Produto implements Serializable {
 		this.categorias = categorias;
 	}
 
-	public Set<ItemPedido> getLista() {
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setLista(Set<ItemPedido> lista) {
+	public void setItens(Set<ItemPedido> lista) {
 		this.itens = lista;
 	}
 

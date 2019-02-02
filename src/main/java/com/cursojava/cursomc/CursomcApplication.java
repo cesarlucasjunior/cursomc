@@ -182,9 +182,9 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		//Associando as instancias de ItemPedido com o Produto
 		
-		p1.getLista().addAll(Arrays.asList(ip1));
-		p2.getLista().addAll(Arrays.asList(ip2));
-		p3.getLista().addAll(Arrays.asList(ip3));
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip2));
+		p3.getItens().addAll(Arrays.asList(ip3));
 		
 		//Salvando a instancia no banco de dados:
 		
