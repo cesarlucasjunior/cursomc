@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CursomcApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
+		//TimeZone.setDefault(TimeZone.getTimeZone("TimeZone"));
 		SpringApplication.run(CursomcApplication.class, args);
 	}
 

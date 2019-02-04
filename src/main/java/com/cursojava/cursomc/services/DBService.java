@@ -62,6 +62,7 @@ public class DBService {
 		Categoria c5 = new Categoria(null, "Administrativo");
 		Categoria c6 = new Categoria(null, "Comercial");
 		Categoria c7 = new Categoria(null, "Finanças");
+		
 	
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
