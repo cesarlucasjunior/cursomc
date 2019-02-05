@@ -34,6 +34,8 @@ public class PedidoService {
 	private ProdutoService produtoService;
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	@Autowired
+	private ClienteService clienteService;
 	
 	
 	// Aqui teremos o método que acessará os dados enviando o resultado ao REST:
@@ -54,6 +56,8 @@ public class PedidoService {
 		pedido.setId(null);
 		pedido.setInstante(new Date());
 		
+		pedido.setCliente(clienteService.find(pedido.getCliente().getId()));
+		
 		pedido.getPagamento().setEstadoPagamento(EstadoPagamento.PENDENTE);
 		pedido.getPagamento().setPedido(pedido);
 		
@@ -71,11 +75,14 @@ public class PedidoService {
 			System.out.println("--------" + ip.getProduto().getId());
 			
 			ip.setDesconto(0.0);
+			ip.setProduto(produtoService.find(ip.getProduto().getId()));
 			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
 			ip.setPedido(pedido);
 		}
 		
 		itemPedidoRepository.saveAll(pedido.getItens());
+		
+		System.out.println(pedido);
 		
 		return pedido;		
 	}
