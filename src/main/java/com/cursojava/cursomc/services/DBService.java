@@ -129,7 +129,7 @@ public class DBService {
 	
 		// Instanciando Cliente e Endereço:
 	
-		Cliente cl1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "03456798212", TipoCliente.PESSOAFISICA);
+		Cliente cl1 = new Cliente(null, "Maria Silva", "piticasaguasclaras@gmail.com", "03456798212", TipoCliente.PESSOAFISICA);
 		// cl1.setTelefones("");
 		cl1.getTelefones().addAll(Arrays.asList("33991228", "34561233"));
 	
