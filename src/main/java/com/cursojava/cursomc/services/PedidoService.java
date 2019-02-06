@@ -36,6 +36,8 @@ public class PedidoService {
 	private ItemPedidoRepository itemPedidoRepository;
 	@Autowired
 	private ClienteService clienteService;
+	@Autowired
+	private EmailService emailService;
 	
 	
 	// Aqui teremos o método que acessará os dados enviando o resultado ao REST:
@@ -82,7 +84,7 @@ public class PedidoService {
 		
 		itemPedidoRepository.saveAll(pedido.getItens());
 		
-		System.out.println(pedido);
+		emailService.sendOrderConfirmationEmail(pedido);
 		
 		return pedido;		
 	}
